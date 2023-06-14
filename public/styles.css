@@ -1,0 +1,75 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body styles */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+  }
+  
+  /* Map container styles */
+  #map {
+    height: 400px;
+    margin-bottom: 20px;
+  }
+  
+  /* Button container styles */
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  /* Button styles */
+  button {
+    flex: 1;
+    padding: 12px;
+    margin-right: 10px; /* Add margin to create space between buttons */
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+    background-color: #007bff;
+    border: 2px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Input field styles */
+  input[type="text"] {
+    flex: 1;
+    padding: 12px;
+    margin-right: 10px; /* Add margin to create space between input field and buttons */
+    font-size: 16px;
+    border: 2px solid black;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    #map {
+      height: 300px;
+    }
+  
+    .button-container {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    button,
+    input[type="text"] {
+      margin-right: 0; /* Reset margin for buttons and input field in mobile view */
+      margin-bottom: 10px; /* Add margin-bottom to create space between buttons and input field */
+    }
+  }
+  
