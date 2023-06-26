@@ -5,17 +5,13 @@ function initializeMap() {
   let distancePolyline = null;
   let currentUserId = null;
   let control = null;
-<<<<<<< HEAD
   let whatsappButton = null;
   let smsButton = null;
-=======
->>>>>>> 12ac0c46cc9ea53ed9b59a8a0dce29c330509433
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
     maxZoom: 18,
   }).addTo(map);
-<<<<<<< HEAD
   
   
   // Event listener for marker click events
@@ -32,23 +28,6 @@ function initializeMap() {
         distanceOutput.textContent = `Distance: ${distance} km`;
         document.body.appendChild(distanceOutput);
 
-=======
-
-  // Event listener for marker click events
-  function handleMarkerClick(userId) {
-    return function () {
-      if (currentUserId && currentUserId !== userId) {
-        const { lat: lat1, lon: lon1 } = users[currentUserId];
-        const { lat: lat2, lon: lon2 } = users[userId];
-        const distance = calculateDistance(lat1, lon1, lat2, lon2);
-        console.log(`Distance between user ${currentUserId} and user ${userId}: ${distance} km`);
-
-        // Display the distance on the page
-        const distanceOutput = document.createElement('p');
-        distanceOutput.textContent = `Distance: ${distance} km`;
-        document.body.appendChild(distanceOutput);
-
->>>>>>> 12ac0c46cc9ea53ed9b59a8a0dce29c330509433
         // Highlight the distance polyline
         if (distancePolyline) {
           map.removeLayer(distancePolyline);
@@ -71,11 +50,7 @@ function initializeMap() {
 
     const lineOptions = { color: 'blue', opacity: 0.6, weight: 4 };
 
-<<<<<<< HEAD
     L.Routing.control({
-=======
-    control = L.Routing.control({
->>>>>>> 12ac0c46cc9ea53ed9b59a8a0dce29c330509433
       waypoints: [
         L.latLng(startPoint[0], startPoint[1]),
         L.latLng(endPoint[0], endPoint[1])
@@ -85,7 +60,6 @@ function initializeMap() {
       createMarker: function () {
         return null;
       }
-<<<<<<< HEAD
     }).addTo(map).on('routesfound', function (e) {
       const routes = e.routes;
       const route = routes[0];
@@ -97,11 +71,6 @@ function initializeMap() {
 
       routePolyline = L.polyline(coordinates, lineOptions).addTo(map);
     });
-=======
-    }).addTo(map);
-
-    routePolyline = L.polyline([startPoint, endPoint], lineOptions).addTo(map);
->>>>>>> 12ac0c46cc9ea53ed9b59a8a0dce29c330509433
   }
 
   function updateUserLocation(userId, lat, lon) {
@@ -143,26 +112,6 @@ function initializeMap() {
     }
   });
 
-<<<<<<< HEAD
-=======
-  // Function to handle the button click event for calculating the route
-  const calculateRouteBtn = document.createElement('button');
-  calculateRouteBtn.textContent = 'Calculate Route';
-  document.body.appendChild(calculateRouteBtn);
-
-  // Event listener for the "Calculate Route" button
-  calculateRouteBtn.addEventListener('click', () => {
-    const startUserId = prompt('Enter the starting user ID');
-    const endUserId = prompt('Enter the ending user ID');
-    if (startUserId && endUserId) {
-      const { lat: startLat, lon: startLon } = users[startUserId];
-      const { lat: endLat, lon: endLon } = users[endUserId];
-      calculateRoute([startLat, startLon], [endLat, endLon]);
-    } else {
-      console.log('Invalid user IDs entered.');
-    }
-  });
->>>>>>> 12ac0c46cc9ea53ed9b59a8a0dce29c330509433
 
   const startTrackingBtn = document.createElement('button');
   startTrackingBtn.textContent = 'Start Tracking';
@@ -191,7 +140,6 @@ function initializeMap() {
   const checkLocationBtn = document.createElement('button');
   checkLocationBtn.textContent = 'Check Location';
   document.body.appendChild(checkLocationBtn);
-<<<<<<< HEAD
   
   checkLocationBtn.addEventListener('click', () => {
   const inputUserId = prompt('Enter the desired user ID');
@@ -202,15 +150,6 @@ function initializeMap() {
 
     if (authorizationCode === '1234') { // Replace '1234' with your desired authorization code
       console.log(`Checking location for user ID: ${inputUserId}`);
-=======
-
-  checkLocationBtn.addEventListener('click', () => {
-    const inputUserId = prompt('Enter the desired user ID'); // Prompt the user to enter the desired user ID
-    if (inputUserId !== null && inputUserId !== '') {
-      console.log(`Checking location for user ID: ${inputUserId}`);
-      // Send the desired user ID to the server or perform any desired action
-      // You can modify this part according to your server-side implementation
->>>>>>> 12ac0c46cc9ea53ed9b59a8a0dce29c330509433
 
       // Remove existing markers from the map
       Object.values(users).forEach((user) => {
@@ -220,7 +159,6 @@ function initializeMap() {
       });
 
       const desiredUser = users[inputUserId];
-<<<<<<< HEAD
 
       if (desiredUser) {
         const { lat, lon } = desiredUser;
@@ -228,12 +166,6 @@ function initializeMap() {
 
         // Set the view of the map to the desired user's location with a zoom level of 14 and enable animation
         map.setView([lat, lon], 14, { animate: true });
-=======
-      if (desiredUser) {
-        const { lat, lon } = desiredUser;
-        console.log(`Desired user ${inputUserId} location: ${lat}, ${lon}`);
-        map.setView([lat, lon], 14, { animate: true }); // Set the view of the map to the desired user's location with a zoom level of 14 and enable animation
->>>>>>> 12ac0c46cc9ea53ed9b59a8a0dce29c330509433
 
         // Create a marker for the desired user
         const marker = L.marker([lat, lon]).addTo(map);
@@ -246,7 +178,6 @@ function initializeMap() {
         errorOutput.textContent = `User ${inputUserId} not found.`;
         document.body.appendChild(errorOutput);
       }
-<<<<<<< HEAD
     } else {
       console.log('Invalid authorization code.');
     }
@@ -448,67 +379,6 @@ function createShareButton(label, link) {
 
 
 
-=======
-    }
-  });
-
-  // Function to handle the button click event for calculating distance
-  const distanceBtn = document.createElement('button');
-  distanceBtn.textContent = 'Calculate Distance';
-  document.body.appendChild(distanceBtn);
-
-  // Event listener for the "Calculate Distance" button
-  distanceBtn.addEventListener('click', () => {
-    const desiredUserId = prompt('Enter the desired user ID');
-    if (desiredUserId !== null && desiredUserId !== '') {
-      console.log(`Calculating distance for user ID: ${desiredUserId}`);
-      const desiredUser = users[desiredUserId];
-      if (desiredUser) {
-        const { lat: lat1, lon: lon1 } = users[currentUserId];
-        const { lat: lat2, lon: lon2 } = desiredUser;
-        const distance = calculateDistance(lat1, lon1, lat2, lon2);
-        console.log(`Distance between user ${currentUserId} and user ${desiredUserId}: ${distance} km`);
-
-        // Display the distance on the page
-        const distanceOutput = document.createElement('p');
-        distanceOutput.textContent = `Distance between user ${currentUserId} and user ${desiredUserId}: ${distance} km`;
-        document.body.appendChild(distanceOutput);
-
-        // Highlight the distance polyline
-        if (distancePolyline) {
-          map.removeLayer(distancePolyline);
-        }
-        distancePolyline = L.polyline([[lat1, lon1], [lat2, lon2]], { color: 'red' }).addTo(map);
-      } else {
-        console.log(`User ${desiredUserId} not found.`);
-        // Display an error message on the page
-        const errorOutput = document.createElement('p');
-        errorOutput.textContent = `User ${desiredUserId} not found.`;
-        document.body.appendChild(errorOutput);
-      }
-    }
-  });
-
-  function calculateDistance(lat1, lon1, lat2, lon2) {
-    const R = 6371; // Radius of the Earth in kilometers
-    const dLat = degToRad(lat2 - lat1);
-    const dLon = degToRad(lon2 - lon1);
-
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(degToRad(lat1)) * Math.cos(degToRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-    const distance = R * c;
-    return distance.toFixed(2);
-  }
-
-  function degToRad(deg) {
-    return deg * (Math.PI / 180);
-  }
-
->>>>>>> 12ac0c46cc9ea53ed9b59a8a0dce29c330509433
   // WebSocket connection
   const socket = new WebSocket('wss://find-me-now.glitch.me/'); // Replace with your Glitch project URL;
 
@@ -532,8 +402,4 @@ function createShareButton(label, link) {
 // Add the script tag to the HTML document
 const scriptTag = document.createElement('script');
 scriptTag.textContent = initializeMap.toString() + '; initializeMap();';
-<<<<<<< HEAD
 document.body.appendChild(scriptTag);
-=======
-document.body.appendChild(scriptTag);
->>>>>>> 12ac0c46cc9ea53ed9b59a8a0dce29c330509433
