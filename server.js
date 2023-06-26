@@ -1,10 +1,10 @@
-const express = require('express');
-const WebSocket = require('ws');
+const express = require("express");
+const WebSocket = require("ws");
 
 const app = express();
 const port = 3000;
 
-app.use(express.static('public'));
+app.use(express.static("public"));
 app.use(express.json());
 
 const server = app.listen(port, () => {
@@ -27,18 +27,18 @@ function broadcastLocation(userId, lat, lon) {
 }
 
 // WebSocket connection handling
-wss.on('connection', (ws) => {
+wss.on("connection", (ws) => {
   clients.add(ws);
-  console.log('New client connected');
+  console.log("New client connected");
 
-  ws.on('message', (message) => {
+  ws.on("message", (message) => {
     console.log(`Received message: ${message}`);
     const { userId, lat, lon } = JSON.parse(message);
     broadcastLocation(userId, lat, lon);
   });
 
-  ws.on('close', () => {
+  ws.on("close", () => {
     clients.delete(ws);
-    console.log('Client disconnected');
+    console.log("Client disconnected");
   });
 });
