@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
+<<<<<<< HEAD
     "build": "echo \"npm run build\""
+=======
+    "build": "npm run build"
+>>>>>>> 12ac0c46cc9ea53ed9b59a8a0dce29c330509433
   },
   "keywords": [],
   "author": "",
